@@ -17,10 +17,10 @@ const TasksListTable = (props) => {
               <td>{task.name}</td>
               <td>{task.doingDate}</td>
               <td>
-                <button type="button" class="btn btn-warning me-3">
+                <button type="button" class="btn btn-outline-warning me-3">
                   Edit
                 </button>
-                <button type="button" class="btn btn-danger">
+                <button type="button" class="btn btn-outline-danger">
                   Delete
                 </button>
               </td>
