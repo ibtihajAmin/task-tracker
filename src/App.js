@@ -18,6 +18,10 @@ function App() {
     setTasks([...tasks, task]);
   };
 
+  const deleteTask = (id) => {
+    setTasks(tasks.filter((task) => task.id !== id));
+  };
+
   return (
     <div className="App">
       <h1 className="text-center mt-3 mb-2">
@@ -31,7 +35,10 @@ function App() {
         </div>
         <div class="col me-3">
           <h3>Your Added Tasks</h3>
-          <TasksListTable tasks={tasks}></TasksListTable>
+          <TasksListTable
+            tasks={tasks}
+            deleteTask={deleteTask}
+          ></TasksListTable>
         </div>
       </div>
     </div>

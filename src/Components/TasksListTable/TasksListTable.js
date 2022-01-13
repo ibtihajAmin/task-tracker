@@ -20,7 +20,11 @@ const TasksListTable = (props) => {
                 <button type="button" class="btn btn-outline-warning me-3">
                   Edit
                 </button>
-                <button type="button" class="btn btn-outline-danger">
+                <button
+                  type="button"
+                  class="btn btn-outline-danger"
+                  onClick={() => props.deleteTask(task.id)}
+                >
                   Delete
                 </button>
               </td>
