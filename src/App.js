@@ -12,6 +12,12 @@ function App() {
   ];
 
   const [tasks, setTasks] = useState(tasksList);
+
+  const addTask = (task) => {
+    task.id = tasks.length + 1;
+    setTasks([...tasks, task]);
+  };
+
   return (
     <div className="App">
       <h1 className="text-center mt-3 mb-2">
@@ -21,7 +27,7 @@ function App() {
       <div class="row align-items-start mt-5">
         <div class="col">
           <h3 className="mb-3">Add Task</h3>
-          <AddTask></AddTask>
+          <AddTask addTask={addTask}></AddTask>
         </div>
         <div class="col me-3">
           <h3>Your Added Tasks</h3>
