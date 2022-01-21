@@ -17,7 +17,13 @@ const TasksListTable = (props) => {
               <td>{task.name}</td>
               <td>{task.doingDate}</td>
               <td>
-                <button type="button" class="btn btn-outline-warning me-3">
+                <button
+                  type="button"
+                  class="btn btn-outline-warning me-3"
+                  onClick={() => {
+                    props.editRow(task);
+                  }}
+                >
                   Edit
                 </button>
                 <button

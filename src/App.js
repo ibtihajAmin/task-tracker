@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import AddTask from "./Components/AddTasks/AddTask";
+import EditTask from "./Components/EditTask/EditTask";
 import TasksListTable from "./Components/TasksListTable/TasksListTable";
 
 function App() {
@@ -12,6 +13,9 @@ function App() {
   ];
 
   const [tasks, setTasks] = useState(tasksList);
+  const [editing, setEditing] = useState(false);
+  const initialFormState = { id: null, name: "", doingDate: "" };
+  const [currentTask, setCurrentTask] = useState(initialFormState);
 
   const addTask = (task) => {
     task.id = tasks.length + 1;
@@ -22,6 +26,16 @@ function App() {
     setTasks(tasks.filter((task) => task.id !== id));
   };
 
+  const editRow = (task) => {
+    setEditing(true);
+    setCurrentTask({ id: task.id, name: task.name, doingDate: task.doingDate });
+  };
+
+  const updateTask = (id, updateTask) => {
+    setEditing(false);
+    setTasks(tasks.map((task) => (task.id === id ? updateTask : task)));
+  };
+
   return (
     <div className="App">
       <h1 className="text-center mt-3 mb-2">
@@ -30,13 +44,27 @@ function App() {
       </h1>
       <div class="row align-items-start mt-5">
         <div class="col">
-          <h3 className="mb-3">Add Task</h3>
-          <AddTask addTask={addTask}></AddTask>
+          {editing ? (
+            <div>
+              <h2>Edit Task</h2>
+              <EditTask
+                setEditing={setEditing}
+                currentTask={currentTask}
+                updateTask={updateTask}
+              ></EditTask>
+            </div>
+          ) : (
+            <div>
+              <h3 className="mb-3">Add Task</h3>
+              <AddTask addTask={addTask}></AddTask>
+            </div>
+          )}
         </div>
         <div class="col me-3">
           <h3>Your Added Tasks</h3>
           <TasksListTable
             tasks={tasks}
+            editRow={editRow}
             deleteTask={deleteTask}
           ></TasksListTable>
         </div>
